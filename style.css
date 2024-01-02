@@ -1,0 +1,145 @@
+:root {
+  --darkestBlue: #0D1014;
+  --darkBlue: #1F242B;
+  --midToDarkBlue: #2F3640;
+  --midBlue: #535E6D;
+  --lightBlue: #6E7E92;
+  --darkTextColor: #839FC6;
+  --midTextColor: #A3C2ED;
+  --lightTextColor: #C4D5ED;
+  --transparentBlack: rgba(0, 0, 0, 0.5);
+  --strongBlack: rgba(0, 0, 0, 0.8);
+}
+
+/* The sidebar menu */
+.sidenav {
+  height: 100%;
+  /* Full-height: remove this if you want "auto" height */
+  width: 20%;
+  /* Set the width of the sidebar */
+  position: fixed;
+  /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
+  left: 0;
+  background-color: var(--darkBlue);
+  /* Black */
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 20px;
+  box-shadow: 6px 6px 25px var(--transparentBlack);
+}
+
+.portrait {
+  box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.5);
+  height: 65%;
+  width: 65%;
+  border-radius: 34% 66% 52% 48% / 40% 66% 34% 60%;
+}
+
+.portraitContainer {
+  text-align: center;
+}
+
+.Content {
+  width: 80%;
+  right: 0;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  float: right;
+}
+
+body {
+  right: 0;
+  border: 0;
+  margin: 0;
+  background-color: var(--darkestBlue);
+}
+
+#home {
+  text-align: center;
+  background-color: var(--midToDarkBlue);
+  /* Black */
+  padding-top: 5em;
+  padding-bottom: 5em;
+  padding-right: 25em;
+  padding-left: 25em;
+}
+
+#intro {
+  background-color: var(--midBlue);
+  border-radius: 1em;
+  padding: 1em;
+  box-shadow: 6px -6px 5px black;
+  color: var(--introTextColor);
+}
+
+#AboutMe {
+  background-color: var(--midBlue);
+  margin:0em;
+  /* Black */
+}
+
+#Projects {
+  background-color: var(--lightBlue);
+  display: grid;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  grid-column: 3;
+  grid-template-columns: repeat(3, 30%);
+  column-gap: 4em;
+  row-gap: 4em;
+  font: 1em "Roboto", sans-serif;
+}
+
+.ProjetExample {
+  background-color: var(--darkBlue);
+  box-shadow: 6px 6px 25px var(--transparentBlack);
+  border-radius: 1em;
+  border: 1em;
+  color: var(--darkTextColor);
+}
+
+.ProjetExample .ProjectExampleGif{
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.ProjetExample:hover .ProjectExampleGif {
+  opacity: 255;
+}
+
+.HoverableProject {
+  transition: transform .2s;
+}
+
+.HoverableProject:hover {
+  transform: scale(1.2);
+}
+
+.ProjectExampleImage{
+  position: relative;
+}
+
+.ProjectExampleGif{
+  position: absolute;
+  pointer-events: none; 
+}
+
+.ProjectExampleGif,
+.ProjectExampleImage {
+  width: 100%;
+  border-radius: 1em;
+  top: 0;
+  left: 0;
+}
+
+
+a:link {
+  text-decoration: none;
+}
