@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Psychoquake</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas Neue">
+</head>
+
+<body>
+
+    <header>
+        <div class="sidenav">
+            <div class="LouisVOGELName">Louis Vogel</div>
+
+            <ul>
+                <div class="sideBarList"><a href="../index.html#Projects">Projects</a></div>
+                <div class="sideBarList"><a href="../index.html#about">About</a></div>
+                <div class="sideBarList"><a href="../index.html#Resume">Resume</a></div>
+            </ul>
+
+            <div class="SideBarFooter">
+                <div class="SideBarIcons">
+                    <a href="https://louis-vogel.itch.io/" target="_blank">
+                        <img src="images/logos/itch_logo.png" alt="">
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/louis-vogel-b5057520b/" target="_blank">
+                        <img src="images/logos/linkedin_logo.png" alt="">
+                    </a>
+
+                    <a href="https://github.com/Veuchh" target="_blank">
+                        <img src="images/logos/github_logo.png" alt="">
+                    </a>
+
+                    <a href="mailto:lsvgel@gmail.com" target="_blank">
+                        <img src="images/logos/mail_logo.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="Content">
+        <div id="projectPageContent">
+            <div class="projectPageDescription">
+                <div class="projectPageTitle">
+                    Psychoquake
+                </div>
+
+                <p>
+                    <a href="https://louis-vogel.itch.io/psychoquake">Psychoquake</a> is a Quake-like multiplayer
+                    shooter that we made in two months as a team of five students during my second year.
+
+                    <br><br>
+
+                <div
+                    style="position: relative; width: 60%; padding-bottom: 33.25%; height: 0; overflow: hidden; margin: 0 auto; display: block;">
+                    <iframe src="https://www.youtube.com/embed/mdil-e6vQhc" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                </div>
+
+                <br><br>
+
+                I handled most of the programming. We started from a port of the Quake 3 player controller in Unity, and
+                I reworked it so it would fit our needs. This was my first multiplayer project and also my first real
+                experience with networking. We built the game using Mirror, the Unity package based on the old UNet API.
+
+                <br><br>
+
+                This project taught me a lot. It helped me strengthen my version control habits as a very juinor dev,
+                and it
+                pushed me to rethink my architectures with new client-server constraints in mind. I also had the chance
+                to discuss some of these challenges with my Unity teacher at the time (and to be boss at Sentry Games).
+                He gave me valuable advice on how to approach multiplayer design and systems in a clean and scalable
+                way.
+                </p>
+
+                <p>
+                    Letting the network part aside, another interesting issue that occured to me for the first time was
+                    how to check for collisions of fast objects. At first, I used the default unity OnTriggerEnter
+                    method, but it did not work some of the time. The reason was that the bullets were never inside the
+                    player collider in any given frame. It was so fast that it moved through it, never trigerring the
+                    collision. This was fixed by implementing a sphereCast when moving the bullet. When the bullet
+                    moves, it fires a spherecast from it's last position to its current position. If this spherecast
+                    hits an enemy, this counts as a hit.
+                </p>
+
+
+                <br><br>
+
+                <img src="../images/Projects_Psychoquake/bullet_raycasting.gif" style="width: 90%;">
+            </div>
+
+            <div class="projectPageImagesList">
+                <div class="projectPageImage">
+                    <img src="../images/Projects_Psychoquake/PQ_01.png">
+                </div>
+                <div class="projectPageImage">
+                    <img src="../images/Projects_Psychoquake/PQ_02.png">
+                </div>
+                <div class="projectPageImage">
+                    <img src="../images/Projects_Psychoquake/PQ_03.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

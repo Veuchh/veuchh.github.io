@@ -1,0 +1,399 @@
+:root {
+  --darkestBlue: #0D1014;
+  --darkBlue: #1F242B;
+  --midToDarkBlue: #2F3640;
+  --midBlue: #535E6D;
+  --lightBlue: #627386;
+  --darkTextColor: #839FC6;
+  --midTextColor: #a9bad1;
+  --lightTextColor: #a7bbd8;
+  --lightestTextColor: #cfddf1;
+  --linkColor: rgb(205, 219, 241);
+  --highlightColor: #0D1014;
+  --transparentBlack: rgba(0, 0, 0, 0.5);
+  --strongBlack: rgba(0, 0, 0, 0.8);
+}
+
+::selection {
+  background: var(--highlightColor);
+  /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+  background: var(--highlightColor);
+  /* Gecko Browsers */
+}
+
+.LouisVOGELName {
+  font: 400% "Bebas Neue", sans-serif;
+  color: var(--darkTextColor);
+  margin-bottom: 0.5em;
+  text-shadow: 2px 2px 6px black;
+  text-align: center;
+  /* optional for contrast */
+}
+
+/* The sidebar menu */
+.sidenav {
+  height: 100%;
+  /* Full-height: remove this if you want "auto" height */
+  width: 15%;
+  /* Set the width of the sidebar */
+  position: fixed;
+  /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
+  left: 0;
+  background-color: var(--darkBlue);
+  /* Black */
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 20px;
+  box-shadow: 6px 6px 25px var(--transparentBlack);
+}
+
+.sideBarList {
+  padding-left: 10%;
+  padding-top: 25%;
+  font: 250% "Bebas Neue", sans-serif;
+}
+
+.sideBarList a:link {
+  text-decoration: none;
+  color: var(--darkTextColor);
+}
+
+.sideBarList a:visited {
+  text-decoration: none;
+  color: var(--darkTextColor);
+}
+
+.sideBarList a:hover {
+  text-decoration: underline;
+}
+
+
+
+.SideBarFooter {
+  position: absolute;
+  bottom: 5%;
+  margin: auto;
+}
+
+.SideBarIcons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SideBarIcons img {
+  max-height: 65%;
+  max-width: 65%;
+  transition: transform .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SideBarIcons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SideBarIcons img:hover {
+  transform: scale(1.2);
+}
+
+.portrait {
+  box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.5);
+  height: auto;
+  width: 58%;
+  border-radius: 50%;
+}
+
+.portraitContainer {
+  flex: 0 0 auto;
+}
+
+.Content {
+  width: 85%;
+  right: 0;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  float: right;
+}
+
+body {
+  right: 0;
+  border: 0;
+  margin: 0;
+  background-color: var(--darkestBlue);
+}
+
+#about {
+  text-align: center;
+  background-color: var(--midBlue);
+  /* Black */
+  padding-top: 10%;
+  padding-bottom: 10%;
+  padding-right: 10%;
+  padding-left: 10%;
+  display: flex;
+  /* Enable side-by-side layout */
+  flex-direction: row;
+  /* Horizontal layout */
+  align-items: center;
+  /* Vertically center */
+  justify-content: center;
+  /* Even spacing */
+  gap: 5%;
+  /* Space between intro and portrait */
+}
+
+#intro {
+  background-color: var(--lightBlue);
+  border-radius: 1em;
+  padding: 1em;
+  font-size: 1.1em;
+  box-shadow: 3px -3px 20px black;
+  color: var(--lightestTextColor);
+  font: 100% "Roboto", sans-serif;
+}
+
+#intro a:link {
+  text-decoration: underline;
+  font: 100% "Roboto", sans-serif;
+  flex: 1;
+}
+
+#intro a:visited {
+  text-decoration: underline;
+  font: 100% "Roboto", sans-serif;
+}
+
+#intro a:hover {
+  text-decoration: none;
+  font: 100% "Roboto", sans-serif;
+}
+
+#Projects {
+  background-color: var(--midToDarkBlue);
+  display: grid;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  grid-column: 3;
+  grid-template-columns: repeat(3, 30%);
+  column-gap: 4em;
+  row-gap: 4em;
+  font: 100% "Roboto", sans-serif;
+}
+
+#DownloadResumeButton {
+  background-color: var(--lightBlue);
+}
+
+.ProjetExample {
+  background-color: var(--darkBlue);
+  box-shadow: 6px 6px 25px var(--transparentBlack);
+  border-radius: 10%;
+  border: 10%;
+  color: var(--darkTextColor);
+}
+
+.ProjetExample .ProjectExampleGif {
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.ProjetExample:hover .ProjectExampleGif {
+  opacity: 255;
+}
+
+.HoverableProject {
+  transition: transform .2s;
+}
+
+.ProjectDescription {
+  text-align: center;
+  margin-bottom: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.HoverableProject:hover {
+  transform: scale(1.2);
+}
+
+.ProjectExampleImage {
+  position: relative;
+}
+
+.ProjectExampleGif {
+  position: absolute;
+  pointer-events: none;
+}
+
+.ProjectExampleGif,
+.ProjectExampleImage {
+  width: 100%;
+  border-radius: 1em;
+  top: 0;
+  left: 0;
+}
+
+a:link {
+  text-decoration: none;
+  color: var(--linkColor);
+}
+
+a:visited {
+  color: var(--linkColor);
+}
+
+#Resume {
+  background-color: var(--lightBlue);
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.ResumeImage {
+  text-align: center;
+}
+
+.ResumeImageClickable {
+  display: inline-block;
+  width: 40%;
+}
+
+.ResumeImageClickable img {
+  width: 100%;
+  height: auto;
+  transition: transform .2s;
+}
+
+.ResumeImageClickable:hover img {
+  transform: scale(1.02);
+}
+
+.DownloadResumeButtons {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.DownloadResumeButton {
+  background-color: var(--midBlue);
+  padding: 5%;
+  margin-top: 3%;
+  margin-bottom: 1%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-radius: 8px;
+  transition: transform .2s;
+}
+
+.DownloadResumeButtons :link {
+  text-decoration: none;
+}
+
+.DownloadResumeButtons :visited {
+  color: var(--lightTextColor);
+  text-decoration: none;
+}
+
+.DownloadResumeButton:hover {
+  transform: scale(1.1);
+}
+
+#projectPageContent {
+  display: flex;
+  /* Two-column layout */
+  flex-direction: row;
+  /* Text on left, images on right */
+  background-color: var(--midBlue);
+  padding: 1em;
+  font-size: 1.1em;
+  box-shadow: 3px -3px 20px black;
+  color: var(--midTextColor);
+  font: 100% "Roboto", sans-serif;
+}
+
+/* Left side (text) */
+.projectPageDescription {
+  flex: 0 0 60%;
+  text-align: center;
+  /* 80% of width */
+  padding-right: 2%;
+  background-color: var(--midBlue);
+  border-radius: 1em;
+  padding: 1em;
+  font-size: 1.1em;
+  color: var(--midTextColor);
+  font: 100% "Roboto", sans-serif;
+}
+
+.docPageDescription {
+  flex: 0 0 60%;
+  text-align: left;
+  /* 80% of width */
+  padding-right: 2%;
+  background-color: var(--midBlue);
+  border-radius: 1em;
+  padding: 1em;
+  font-size: 1.1em;
+  color: var(--midTextColor);
+  font: 100% "Roboto", sans-serif;
+}
+
+.projectPageDescription a:link {
+  text-decoration: underline;
+  font: 100% "Roboto", sans-serif;
+}
+
+/* Right side (images list) */
+.projectPageImagesList {
+  flex: 0 0 35%;
+  /* 20% of width */
+  padding-top: 3em;
+  display: flex;
+  flex-direction: column;
+  /* Stack vertically */
+  gap: 1em;
+}
+
+.projectPageImage img {
+  width: 100%;
+  /* Make images scale to column */
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.projectPageImage img:hover {
+  transform: scale(1.1);
+}
+
+
+/* Title styling */
+.projectPageTitle {
+  font: 450% "Bebas Neue", sans-serif;
+  color: var(--lightTextColor);
+  margin-bottom: 0.5em;
+  text-shadow: 2px 2px 6px black;
+  /* optional for contrast */
+}
+
+/* Title styling */
+.projectPageSubtitle {
+  font: 300% "Bebas Neue", sans-serif;
+  color: var(--lightTextColor);
+  margin-bottom: 0.5em;
+  text-shadow: 2px 2px 6px black;
+  /* optional for contrast */
+}

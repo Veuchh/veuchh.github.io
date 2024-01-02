@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>://Ex_Silentio_</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas Neue">
+</head>
+
+<body>
+
+    <header>
+        <div class="sidenav">
+            <div class="LouisVOGELName">Louis Vogel</div>
+
+            <ul>
+                <div class="sideBarList"><a href="../index.html#Projects">Projects</a></div>
+                <div class="sideBarList"><a href="../index.html#about">About</a></div>
+                <div class="sideBarList"><a href="../index.html#Resume">Resume</a></div>
+            </ul>
+
+            <div class="SideBarFooter">
+                <div class="SideBarIcons">
+                    <a href="https://louis-vogel.itch.io/" target="_blank">
+                        <img src="images/logos/itch_logo.png" alt="">
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/louis-vogel-b5057520b/" target="_blank">
+                        <img src="images/logos/linkedin_logo.png" alt="">
+                    </a>
+
+                    <a href="https://github.com/Veuchh" target="_blank">
+                        <img src="images/logos/github_logo.png" alt="">
+                    </a>
+
+                    <a href="mailto:lsvgel@gmail.com" target="_blank">
+                        <img src="images/logos/mail_logo.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="Content">
+        <div id="projectPageContent">
+            <div class="projectPageDescription">
+                <div class="projectPageTitle">
+                    ://Ex_Silentio_
+                </div>
+
+                <p>
+                    <a href="https://corail.itch.io/ex-silentio" target="_blank">://Ex_Silentio_</a> is a puzzle and
+                    exploration game with a graphical twist. Everything starts completely black. Using only audio cues
+                    and context, you type a word into a shell-like console. If it is correct, the element you guessed
+                    appears on screen. The twist is that the word you typed becomes the texture of the object.
+                    <br><br>
+                    This is a bit hard to explain with text, so here is a gameplay video to give you a clearer idea:
+                </p>
+
+                <!--Video integration-->
+                <div
+                    style="position: relative; width: 60%; padding-bottom: 33.25%; height: 0; overflow: hidden; margin: 0 auto; display: block;">
+                    <iframe src="https://www.youtube.com/embed/tpq65Se_EB0?start=81" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                </div>
+
+                <p>
+                    First, I want to talk a bit about the main way the player interacts with the game: the console.
+                    There are two ways to use it, either through Commands or by guessing words.
+                    <br>
+                    Commands are instructions the player can type to do various things, such as opening a tutorial,
+                    getting hints, taking a screenshot, or resetting their position.
+                    <br>
+                    If what the player typed is not recognized as a command, we assume they were trying to guess a word.
+                    <br>
+                    To help players who struggle with spelling, we added an autocorrect system using the Levenshtein
+                    distance algorithm. It returns the number of per-character edits needed to turn one string into
+                    another. If the distance was below a threshold, we corrected the input to the closest valid word.
+                    The main drawback of this algorithm is that it compares the input with every possible word, but that
+                    was fine for us since our dictionary was small (around one hundred words).
+                </p>
+
+                <p>
+                    I also had the chance to create several tools for this project. The main one was the tool we used to
+                    define word associations. We wanted players to be able to reveal an object using multiple words. For
+                    example, in one level, both "ocean" and "sea" reveal the same element. So we needed a tool that
+                    helped us organize this web of related words. The tool looked like this:
+                </p>
+
+                <img src="..\images\Projects_ExSilentio\ES_WordTool.png" style="width: 90%;">
+
+                <p>
+                    This tool had several purposes: creating new words, linking them together, and defining hint words.
+                    Sometimes players might think of a word that was close but not quite right. We wanted to give them
+                    feedback that they were on the right track. In this example, the selected word on the left is
+                    "ocean". On the right, "sea" is another valid word for the same idea, and "water" is considered
+                    close.
+                    <br><br>
+                    I also developed a playtest tool. It logged the player's position and exported it as a CSV file. In
+                    the editor, we could then load these CSV files to visualize player paths. This allowed us to create
+                    heatmaps of explored and unexplored areas and see the exact path taken by each tester.
+                </p>
+
+                <img src="..\images\Projects_ExSilentio\ES_PlaytestTool.png" style="width: 90%;">
+
+                <p>
+                    Early in development, I realized that if we wanted multiple words to reveal the same object while
+                    supporting localization (the game is playable in French and English), we would need to generate the
+                    word textures procedurally. One option would have been generating them during the build, but we
+                    chose to generate them at runtime to speed up iteration. This was done by splitting the input string
+                    into characters, then copying each letter's texture from an atlas into the final texture.
+                </p>
+
+                <img src="..\images\Projects_ExSilentio\ES_TetureGeneration.png" style="width: 90%;">
+
+                <p>
+                    One issue we hit early on was lag spikes whenever the player guessed a word. After checking the
+                    Unity Profiler, I found that copying pixels from the atlas to the new texture was slow. I was using
+                    Texture.GetPixels and Texture.SetPixels, which run on the CPU. Switching to Graphics.CopyTexture
+                    solved the problem.
+                </p>
+
+            </div>
+
+            <div class="projectPageImagesList">
+                <div class="projectPageImage">
+                    <img src="../images/Projects_ExSilentio/ES_01.png">
+                </div>
+                <div class="projectPageImage">
+                    <img src="../images/Projects_ExSilentio/ES_02.png">
+                </div>
+                <div class="projectPageImage">
+                    <img src="../images/Projects_ExSilentio/ES_03.png">
+                </div>
+                <div class="projectPageImage">
+                    <img src="../images/Projects_ExSilentio/ES_04.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

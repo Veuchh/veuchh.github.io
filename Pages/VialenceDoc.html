@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Game Design Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas Neue">
+</head>
+
+<body>
+    <header>
+        <div class="sidenav">
+            <div class="LouisVOGELName">Louis Vogel</div>
+            <ul>
+                <div class="sideBarList"><a href="../index.html#Projects">Projects</a></div>
+                <div class="sideBarList"><a href="../index.html#about">About</a></div>
+                <div class="sideBarList"><a href="../index.html#Resume">Resume</a></div>
+            </ul>
+            <div class="SideBarFooter">
+                <div class="SideBarIcons">
+                    <a href="https://louis-vogel.itch.io/" target="_blank">
+                        <img src="images/logos/itch_logo.png" alt="">
+                    </a>
+                    <a href="https://www.linkedin.com/in/louis-vogel-b5057520b/" target="_blank">
+                        <img src="images/logos/linkedin_logo.png" alt="">
+                    </a>
+                    <a href="https://github.com/Veuchh" target="_blank">
+                        <img src="images/logos/github_logo.png" alt="">
+                    </a>
+                    <a href="mailto:lsvgel@gmail.com" target="_blank">
+                        <img src="images/logos/mail_logo.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="Content">
+        <div id="projectPageContent">
+            <div class="docPageDescription">
+
+                <h1 style="color:rgb(161, 93, 179)">Game Pillars</h1>
+                <h4>🍷 Emergent Solutions through potions</h4>
+                <p>Potion crafting should be something that can get you out of any kind of situation, with the right
+                    combination.</p>
+                <h4>⚔ Juicy and fast-paced combat</h4>
+                <p>The combat should be fast paced, with juicy dodge rolls and melee attacks to keep you on your toes.
+                </p>
+                <h4>🗺 Exploration exponentially increases player options</h4>
+                <p>Unlocking a new ingredient will exponentially increase the amount of option the player has.</p>
+
+                <h1 style="color:rgb(161, 93, 179)">Core Gameplay</h1>
+                <h3>Inspirations</h3>
+                <p>Wizards of Legend, Magicka 2, Genshin Impact, Binding of Isaac</p>
+                <h3>TL;DR</h3>
+                <p><b>Genre:</b> Hack'n'Slash Roguelike<br>
+                    <b>Camera:</b> Top Down<br>
+                    <b>Character Controller:</b> Fast Paced<br>
+                    <b>USP:</b> Emergent potion brewing mechanic
+                </p>
+                <h3>Description</h3>
+                <p>The player plays as an apothecary going through a procedurally generated dungeon, fighting enemies.
+                    They can move around, do a melee attack, and dodge roll. They have access to healing potions and
+                    action potions brewed themselves. Once brewed, these potions are unlimited use but have a cooldown.
+                </p>
+
+    <p><img src="../images/Projects_PersonalProjects/VialenceControls.png" alt="Game Controls"></p>
+
+                <h3>Potions</h3>
+                <h4>Healing potions</h4>
+                <p>Healing potions can only be replenished by collecting drops from enemies.</p>
+                <h4>Brewing action potions</h4>
+                <p>Action potions can be brewed in "Potion Brewing Mode". Each potion is made of two ingredients and a
+                    vial. Ingredients can be duplicated to increase potency and effect duration.</p>
+
+                <h5>Vials</h5>
+                <ul>
+                    <li><b>Small bomb vial:</b> Thrown in a direction, explodes on impact or long distance. Small area
+                        of effect.</li>
+                    <li><b>Big bomb vial:</b> Thrown in a direction, explodes on impact or short distance. Bigger area
+                        of effect.</li>
+                    <li><b>Room-wide vials:</b> Affects the whole room. Short effect & low damage.</li>
+                    <li><b>Self:</b> Cast on player. Can add/remove statuses. Can hurt player.</li>
+                    <li><b>Weapon coating:</b> Status applied by melee attack for short duration.</li>
+                </ul>
+
+                <h5>Ingredients</h5>
+                <ul>
+                    <li>🔥 Fiery Cherry: Applies burning</li>
+                    <li>💧 Dewy Ivy: Applies wet</li>
+                    <li>⛰ Earthy Pear: Applies grounded</li>
+                    <li>⚡ Crackling Ginger: Applies shocked. Chains to nearby wet enemies</li>
+                    <li>💨 Flowing Crowfoot: Applies hovering, knockback</li>
+                    <li>❄ Chilly Lilly: Applies chilled</li>
+                </ul>
+                <p>Ingredients add both statuses and damage types.</p>
+
+                <h5>Ingredients Synergy & Dissonance</h5>
+                <ul>
+                    <li>🔥 + 💧 = 🌫 Fog: Enemies cannot see the player</li>
+                    <li>❄ + 💧 = 🧊 Ice: Applies frozen</li>
+                    <li>⛰ + ❄ = 🗻 Permafrost: Chilled ground zone</li>
+                    <li>⚡ + 💨 = 🌩 Thunderstorm: Random area lightning</li>
+                    <li>🔥 + ⚡ = 💥 Explosion: Damage + knockback + burning</li>
+                    <li>🔥 + ⛰ = 🌋 Lava: Lava blob applying burning</li>
+                    <li>Dissonance cancels effects</li>
+                </ul>
+
+                <h3>Statuses</h3>
+                <p>Statuses applied to player or enemies. Auto-remove after duration.</p>
+                <ul>
+                    <li>Burning: Damage over time. Cancels wet if applied.</li>
+                    <li>Wet: Takes more damage from electricity. Cancels burning if applied.</li>
+                    <li>Shocked: Cannot attack, can move. Cancelled by grounded.</li>
+                    <li>Chilled: Slows movement/attacks. Cancels wet + chilled, applies frozen.</li>
+                    <li>Frozen: Cannot move or attack. Burns remove frozen and deal extra damage.</li>
+                    <li>Grounded: Cannot move, can attack. Slams flying targets.</li>
+                    <li>Hovering: Faster movement. Removes grounded if applied.</li>
+                </ul>
+
+                <h1 style="color:rgb(161, 93, 179)">Level Design</h1>
+                <p>Terminology: Room = smallest unit, Level = collection of rooms, Run = one attempt.</p>
+                <p>Level design inspired by Binding of Isaac. Exit blocked by boss or enemy wave. 4 levels, 5th for
+                    final boss optional.</p>
+
+                <h3>Room Types</h3>
+                <ul>
+                    <li>Spawn Room: 1x1, nothing happens</li>
+                    <li>Combat Room: 1x1–2x2, waves of enemies, doors unlock after defeating all</li>
+                    <li>Trap Room: 1x1–2x1, navigate traps. Potions helpful</li>
+                    <li>Boss Room: 2x2, exit locked, defeat boss to unlock</li>
+                </ul>
+
+                <h1 style="color:rgb(161, 93, 179)">Enemies</h1>
+                <h3>Regular Enemies</h3>
+                <ul>
+                    <li>Dummy: Respawns infinitely</li>
+                    <li>Slimes: Move toward player, charge if close, feint attack</li>
+                    <li>Shooting Eye: Move toward player, circle, shoot projectiles</li>
+                    <li>Shockwave Golem: Random jump, shockwave, wait</li>
+                    <li>Trap Specter: Move away, lay trap</li>
+                </ul>
+                <h3>Bosses</h3>
+                <p>Reworked basic enemies with advanced movesets. Designed later.</p>
+
+                <h1 style="color:rgb(161, 93, 179)">Progression</h1>
+                <p>Player starts with Flowing Crowfoot and Fiery Cherry. Hub area available for NPCs, tutorials, and
+                    starting ingredient selection. Random ingredient gained at end of each level. Challenges unlock cape
+                    colors.</p>
+
+                <h1 style="color:rgb(161, 93, 179)">Balancing</h1>
+                <h3>Entity Stats</h3>
+                <table border="1" style="width:100%; border-collapse: collapse; text-align:center;">
+                    <tr>
+                        <th>Entity</th>
+                        <th>Max HP</th>
+                        <th>Default Attack Damage</th>
+                    </tr>
+                    <tr>
+                        <td>Player</td>
+                        <td>100</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Dummy</td>
+                        <td>999999</td>
+                        <td>/</td>
+                    </tr>
+                    <tr>
+                        <td>Slime</td>
+                        <td>20</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Eye</td>
+                        <td>15</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Golem</td>
+                        <td>35</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Specter</td>
+                        <td>25</td>
+                        <td>10</td>
+                    </tr>
+                </table>
+
+                <h3>Potion Damage Values</h3>
+                <table border="1" style="width:100%; border-collapse: collapse; text-align:center;">
+                    <tr>
+                        <th>Potion Type\Ingredient</th>
+                        <th>Fire</th>
+                        <th>Water</th>
+                        <th>Electricity</th>
+                        <th>Earth</th>
+                        <th>Air</th>
+                        <th>Cold</th>
+                    </tr>
+                    <tr>
+                        <td>Small Bomb</td>
+                        <td>15</td>
+                        <td>15</td>
+                        <td>15</td>
+                        <td>15</td>
+                        <td>15</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>Big Bomb</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Room-Wide</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Weapon Coating</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Self</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+
+                <h3>Potion Synergy/Dissonance</h3>
+                <table border="1" style="width:100%; border-collapse: collapse; text-align:center;">
+                    <tr>
+                        <th>Synergy/Dissonance</th>
+                        <th>Small Bomb</th>
+                        <th>Big Bomb</th>
+                        <th>Room-Wide</th>
+                        <th>Weapon Coating</th>
+                        <th>Self</th>
+                    </tr>
+                    <tr>
+                        <td>Dissonance</td>
+                        <td>1 neutral</td>
+                        <td>1 neutral</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Fog</td>
+                        <td>7 fire,7 water</td>
+                        <td>4 fire,4 water</td>
+                        <td>2 fire,2 water</td>
+                        <td>1 fire,1 water</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Thunderstorm</td>
+                        <td>7 air,7 electricity</td>
+                        <td>4 air,4 electricity</td>
+                        <td>2 air,2 electricity</td>
+                        <td>1 air,1 electricity</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Lava</td>
+                        <td>15 fire,5 earth</td>
+                        <td>10 fire,3 earth</td>
+                        <td>5 fire,2 earth</td>
+                        <td>3 fire,1 earth</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Explosion</td>
+                        <td>10 fire,10 electricity</td>
+                        <td>7 fire,7 electricity</td>
+                        <td>4 fire,4 electricity</td>
+                        <td>2 fire,2 electricity</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Ice</td>
+                        <td>17 cold</td>
+                        <td>12 cold</td>
+                        <td>7 cold</td>
+                        <td>2 cold</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Permafrost</td>
+                        <td>8 cold,8 earth</td>
+                        <td>5 cold,5 earth</td>
+                        <td>2 cold,2 earth</td>
+                        <td>1 cold,1 earth</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+
+                <h3>Potion Timings</h3>
+                <table border="1" style="width:100%; border-collapse: collapse; text-align:center;">
+                    <tr>
+                        <th>Potion Type</th>
+                        <th>Cooldown (s)</th>
+                        <th>Effect Duration</th>
+                    </tr>
+                    <tr>
+                        <td>Small Bomb</td>
+                        <td>10</td>
+                        <td>1 frame</td>
+                    </tr>
+                    <tr>
+                        <td>Big Bomb</td>
+                        <td>10</td>
+                        <td>1 frame</td>
+                    </tr>
+                    <tr>
+                        <td>Room-Wide</td>
+                        <td>20</td>
+                        <td>1 frame</td>
+                    </tr>
+                    <tr>
+                        <td>Weapon Coating</td>
+                        <td>15</td>
+                        <td>5 s</td>
+                    </tr>
+                    <tr>
+                        <td>Self</td>
+                        <td>5</td>
+                        <td>1 frame</td>
+                    </tr>
+                </table>
+
+                <h3>Damage Modifiers vs Status Effects</h3>
+                <table border="1" style="width:100%; border-collapse: collapse; text-align:center;">
+                    <tr>
+                        <th>Damage Type\Status Effect</th>
+                        <th>Burning</th>
+                        <th>Wet</th>
+                        <th>Grounded</th>
+                        <th>Shocked</th>
+                        <th>Hovering</th>
+                        <th>Chilled</th>
+                        <th>Frozen</th>
+                    </tr>
+                    <tr>
+                        <td>Fire</td>
+                        <td></td>
+                        <td>0</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1.2</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Water</td>
+                        <td>0</td>
+                        <td></td>
+                        <td></td>
+                        <td>1.2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Electric</td>
+                        <td></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td></td>
+                        <td>1.2</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Earth</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1.5</td>
+                        <td>0.8</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Air</td>
+                        <td></td>
+                        <td></td>
+                        <td>1.2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cold</td>
+                        <td>0.8</td>
+                        <td>1.2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1.1</td>
+                    </tr>
+                </table>
+
+                <h3>Status Effect Balancing</h3>
+                <table border="1" style="width:100%; border-collapse: collapse; text-align:center;">
+                    <tr>
+                        <th>Status Effect</th>
+                        <th>Effect Duration (s)</th>
+                        <th>Tick Duration (s)</th>
+                        <th>Damage per tick</th>
+                        <th>Total Damage</th>
+                        <th>Other Effects</th>
+                        <th>Speed Modifier</th>
+                        <th>Prevents Attacking</th>
+                    </tr>
+                    <tr>
+                        <td>Burning</td>
+                        <td>5</td>
+                        <td>0.5</td>
+                        <td>1 fire</td>
+                        <td>10 fire</td>
+                        <td>If frozen: 10 cold; If chilled: 5 cold</td>
+                        <td>1</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Chilled</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>If burning: 5 fire</td>
+                        <td>0.5</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Frozen</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1 cold</td>
+                        <td>5 cold</td>
+                        <td>If burning: 20 fire</td>
+                        <td>0</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Grounded</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Hovering</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>If grounded: 15 earth</td>
+                        <td>1.3</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>Shocked</td>
+                        <td>5</td>
+                        <td>1</td>
+                        <td>1 electric</td>
+                        <td>5 electric</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Wet</td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>If chilled: 5 cold</td>
+                        <td>1</td>
+                        <td>No</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
