@@ -397,3 +397,31 @@ a:visited {
   text-shadow: 2px 2px 6px black;
   /* optional for contrast */
 }
+
+#transcriptPageContent {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3em; /* space between the two images */
+  padding: 3%;
+  background-color: var(--midBlue);
+}
+
+#transcriptPageContent a {
+  display: inline-block;
+  width: 40%;
+  transition: transform 0.2s;
+  min-height: 100vh;
+}
+
+#transcriptPageContent img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 6px 6px 25px var(--transparentBlack);
+  transition: transform 0.2s;
+}
+
+#transcriptPageContent a:hover img {
+  transform: scale(1.05);
+}
