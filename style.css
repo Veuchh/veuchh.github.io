@@ -107,19 +107,12 @@
   transform: scale(1.2);
 }
 
-.portrait {
-  box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.5);
-  height: auto;
-  width: 58%;
-  border-radius: 50%;
-}
-
-.portraitContainer {
-  flex: 0 0 auto;
-}
-
 .Content {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--midBlue);
   width: 85%;
+  min-height: 100vh;
   right: 0;
   padding: 0;
   border: 0;
@@ -136,12 +129,12 @@ body {
 
 #about {
   text-align: center;
-  background-color: var(--midBlue);
+  background-color: var(--midToDarkBlue);
   /* Black */
-  padding-top: 10%;
-  padding-bottom: 10%;
-  padding-right: 10%;
-  padding-left: 10%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-right: 9em;
+  padding-left: 4em;
   display: flex;
   /* Enable side-by-side layout */
   flex-direction: row;
@@ -151,17 +144,37 @@ body {
   justify-content: center;
   /* Even spacing */
   gap: 5%;
-  /* Space between intro and portrait */
 }
 
 #intro {
-  background-color: var(--lightBlue);
   border-radius: 1em;
+  color: var(--lightestTextColor);
+  font: 100% "Roboto", sans-serif;
+}
+
+#introBox {
+  background-color: var(--midBlue);
+  border-radius: 1em;
+  margin-top: 2em;
+  margin-bottom: 2em;
   padding: 1em;
   font-size: 1.1em;
   box-shadow: 3px -3px 20px black;
-  color: var(--lightestTextColor);
   font: 100% "Roboto", sans-serif;
+}
+
+.portrait {
+  box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.5);
+  height: auto;
+  width: 58%;
+  border-radius: 50%;
+}
+
+.portraitContainer {
+  flex: 0 0 auto;
+  width: 40%;
+  margin-left: -5%;
+  margin-right: -5%;
 }
 
 #intro a:link {
@@ -181,7 +194,7 @@ body {
 }
 
 #Projects {
-  background-color: var(--midToDarkBlue);
+  background-color: var(--midBlue);
   display: grid;
   padding-left: 10%;
   padding-right: 10%;
@@ -317,20 +330,17 @@ a:visited {
   flex-direction: row;
   /* Text on left, images on right */
   background-color: var(--midBlue);
-  padding: 1em;
+  padding: 2em;
   font-size: 1.1em;
   box-shadow: 3px -3px 20px black;
   color: var(--midTextColor);
   font: 100% "Roboto", sans-serif;
 }
 
-/* Left side (text) */
 .projectPageDescription {
-  flex: 0 0 60%;
+  flex: 1;
   text-align: center;
-  /* 80% of width */
   padding-right: 2%;
-  background-color: var(--midBlue);
   border-radius: 1em;
   padding: 1em;
   font-size: 1.1em;
@@ -338,8 +348,21 @@ a:visited {
   font: 100% "Roboto", sans-serif;
 }
 
+.projectPageDescriptionNoImage {
+  flex: 1;
+  text-align: center;
+  padding-right: 2%;
+  border-radius: 1em;
+  align-self: center;
+  padding: 1em;
+  font-size: 1.1em;
+  color: var(--midTextColor);
+  font: 100% "Roboto", sans-serif;
+  max-width: 75%;
+}
+
 .docPageDescription {
-  flex: 0 0 60%;
+  flex: 1;
   text-align: left;
   /* 80% of width */
   padding-right: 2%;
@@ -402,7 +425,8 @@ a:visited {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 3em; /* space between the two images */
+  gap: 3em;
+  /* space between the two images */
   padding: 3%;
   background-color: var(--midBlue);
 }

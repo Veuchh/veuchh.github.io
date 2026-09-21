@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>WildBlood Studio</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas Neue">
+</head>
+
+<body>
+
+
+    <header>
+        <div class="sidenav">
+            <div class="LouisVOGELName">Louis Vogel</div>
+
+            <ul>
+                <div class="sideBarList"><a href="../index.html#about">About</a></div>
+                <div class="sideBarList"><a href="../index.html#Projects">Projects</a></div>
+                <div class="sideBarList"><a href="../index.html#Resume">Resume</a></div>
+            </ul>
+
+            <div class="SideBarFooter">
+                <div class="SideBarIcons">
+                    <a href="https://louis-vogel.itch.io/" target="_blank">
+                        <img src="images/logos/itch_logo.png" alt="">
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/louis-vogel-b5057520b/" target="_blank">
+                        <img src="../images/logos/linkedin_logo.png" alt="">
+                    </a>
+
+                    <a href="https://github.com/Veuchh" target="_blank">
+                        <img src="../images/logos/github_logo.png" alt="">
+                    </a>
+
+                    <a href="mailto:lsvgel@gmail.com" target="_blank">
+                        <img src="../images/logos/mail_logo.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="Content">
+        <div class="projectPageDescriptionNoImage">
+
+            <div class="projectPageTitle">
+                WildBlood Studio
+            </div>
+
+            <p>
+                I spent roughly six months working as a programmer at
+                <a href="https://www.linkedin.com/company/wildblood-studio" target="_blank">WildBlood Studio</a>,
+                primarily on contract projects for other studios.
+                This gave me the opportunity to work across multiple engines, platforms, codebases, and production
+                environments.
+                <br><br>
+                During this time, I worked with <strong>Unreal Engine 5, C++, Blueprints, Unity and C#</strong>,
+                on projects targeting <strong>PC, mobile and VR</strong>.
+                I also worked closely with game designers, creative directors and other programmers, often joining
+                existing projects and adapting to their established frameworks.
+                <br><br>
+                Several of the projects I worked on are still under NDA. The descriptions below therefore focus on
+                my responsibilities, technical challenges and contributions without revealing confidential information.
+            </p>
+
+            <br><br>
+
+            <div class="projectPageSubtitle">
+                Unannounced 3D Adventure Platformer
+            </div>
+
+            <p>
+                This was the main project being developed internally by WildBlood Studio: a 3D adventure platformer
+                made with Unreal Engine 5.
+                <br><br>
+                My responsibilities included implementing gameplay features, debugging existing systems and iterating
+                on gameplay ideas in collaboration with the creative director and game designer.
+                I worked with both <strong>Blueprints and C++</strong>, depending on the requirements of each feature.
+                <br><br>
+                One aspect I particularly enjoyed was the collaborative nature of the development process. Team members
+                were encouraged to propose ideas, prototype them and evaluate whether they fit the overall vision of
+                the game.
+                <br><br>
+                Unfortunately, I cannot provide additional details or visual material for this project because it is
+                still under NDA.
+            </p>
+
+            <br><br>
+
+            <div class="projectPageSubtitle">
+                Unannounced Board Game Port
+            </div>
+
+            <p>
+                I also worked on the PC and mobile port of an unannounced board game using Unity and C#.
+                The game is loosely similar to Scrabble, with an additional mechanic allowing players to modify letters
+                that have already been placed on the board in order to create new words.
+                <br><br>
+                One of the main technical challenges was validating words against a French dictionary containing
+                roughly <strong>300,000 words</strong>.
+            </p>
+
+            <br>
+
+            <p>
+                <strong>The problem</strong>
+                <br><br>
+                A straightforward approach would have been to iterate through the entire list every time a player
+                entered a word. However, repeatedly searching through hundreds of thousands of entries was unnecessarily
+                expensive, especially on mobile hardware.
+            </p>
+
+            <p>
+                <strong>The solution</strong>
+                <br><br>
+                I implemented a partitioned dictionary structure to reduce the number of words that needed to be
+                considered for each lookup.
+                <br><br>
+                Each partition was indexed using the first three letters of a word. I experimented with two- and
+                four-letter keys, but three-letter partitions provided the best performance in my tests.
+                <br><br>
+                Words containing three letters or fewer were stored separately in a dedicated partition.
+            </p>
+
+            <br>
+
+            <img src="../images/Projects_WB/WB_BakedSubPartitionScreenshot.png" style="width: 40%;"
+                alt="Example of a baked word dictionary sub-partition">
+
+            <br><br>
+
+            <p>
+                I then created an editor tool that parsed the original 300,000-word text file and automatically
+                generated and populated the required <strong>WordDictionarySubPartition</strong> ScriptableObjects.
+                <br><br>
+                Once generated, these partitions were stored inside a higher-level
+                <strong>WordDictionary</strong> ScriptableObject, which contained the small-word partition as well as
+                references to the other partitions.
+                <br><br>
+                This allowed the raw dictionary to be processed once during development rather than rebuilding the
+                entire structure at runtime.
+            </p>
+
+            <br>
+
+            <p>
+                At runtime, the validation process was therefore kept simple: the game identified the appropriate
+                partition from the first letters of the input word, then searched only within that subset rather than
+                scanning the entire dictionary.
+            </p>
+
+            <br>
+
+            <img src="../images/Projects_WB/WB_IsWordValidAlgorithmDiagram.png" style="width: 100%;"
+                alt="Word validation algorithm diagram">
+            <p>
+                This project was a good opportunity to work on <strong>data organization, editor tooling and runtime
+                    performance</strong> while working with a relatively large dataset.
+            </p>
+
+            <br><br>
+
+            <div class="projectPageSubtitle">
+                Unannounced Party Game
+            </div>
+
+            <p>
+                Another contract project I worked on was an unannounced party game based on a French license.
+                <br><br>
+                I was responsible for <strong>prototyping six different minigames in three weeks</strong>, working
+                closely with game designers.
+                <br><br>
+                The short deadline was one of the main challenges of the project. Another was that the prototypes had
+                to fit into an already established development framework rather than being built from scratch.
+                <br><br>
+                I therefore first familiarized myself with the existing framework and its conventions, then used it to
+                implement and iterate on the different gameplay prototypes. When necessary, I worked directly with the
+                main development team to understand how the existing systems were intended to be used.
+                <br><br>
+                My previous experience developing
+                <a href="PartyKnight.html" target="_blank">Party Knight</a>,
+                another party game I worked on during my third year at 3Axes Institut, was particularly useful here.
+                It gave me experience with the common gameplay patterns and rapid iteration required for this type of
+                project.
+            </p>
+
+            <br><br>
+
+            <div class="projectPageSubtitle">
+                Worst Food Truck
+            </div>
+
+            <p>
+                I also worked on <strong>Worst Food Truck</strong>, a VR game about making awful pizzas.
+                <br><br>
+                My work on the project included implementing new VR interactions and debugging existing gameplay
+                systems. One example was adding an alternative way for players to interact with customers: instead of
+                pressing a button, players could physically pull a rope to ring a bell. However, a significant portion
+                of my time on this project was dedicated to investigating and fixing existing issues, which gave me
+                experience working within an already-developed VR codebase and understanding systems that I had not
+                originally implemented.
+            </p>
+
+            <br>
+
+            <div
+                style="position: relative; width: 60%; padding-bottom: 33.25%; height: 0; overflow: hidden; margin: 0 auto; display: block;">
+                <iframe src="https://www.youtube.com/embed/_r3F5uwiT7Q?start=16" title="Worst Food Truck gameplay video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                </iframe>
+            </div>
+
+            <br><br>
+
+            <div class="projectPageSubtitle">
+                Unannounced VR Building Game Update
+            </div>
+
+            <p>
+                This was one of the projects I spent the most time working on at WildBlood Studio.
+                Together with another programmer, I was tasked with updating an existing VR building game.
+                <br><br>
+                The gameplay can be broadly compared to building and decorating a house in a Sims-like game, but with
+                the interactions taking place directly in VR.
+                <br><br>
+                The original game was designed around VR controllers, and one of our main responsibilities was to add
+                <strong>hand tracking support</strong>.
+            </p>
+
+            <br>
+
+            <p>
+                <strong>Working with an existing architecture</strong>
+                <br><br>
+                Before implementing the new interaction system, we first analyzed the existing architecture and
+                interaction systems.
+                The project had already accumulated a significant amount of functionality, so understanding how the
+                existing controller-based interactions were structured was an important part of the work.
+                <br><br>
+                We then adapted the relevant systems to support hand tracking while preserving the existing gameplay
+                behavior. Our general strategy was to reinject our collected inputs as early in the chain of commands as
+                possible, in order to preserve most of the already in-place systems.
+            </p>
+
+            <br>
+
+            <p>
+                <strong>UI and UX</strong>
+                <br><br>
+                We also worked on other parts of the game, including a rework of the user interface following
+                recommendations from a UX specialist.
+                <br><br>
+                This project gave me additional experience working on an established codebase, extending existing
+                gameplay systems and collaborating with another programmer while integrating feedback from a UX
+                specialist.
+            </p>
+
+        </div>
+</body>
